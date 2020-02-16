@@ -25,13 +25,11 @@ echo "[AK] Setting up ZSH"
 
 sudo apt -y install zsh
 sudo apt -y install powerline fonts-powerline
-
+git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 sudo chsh -s $(which zsh)
 
 # sudo apt -y install zsh-theme-powerlevel9k
-rm -rf ~/.oh-my-zsh ~/.zsh*
 
-cp -R init/oh-my-zsh ~/.oh-my-zsh
 cp init/zshrc ~/.zshrc
 source ~/.zshrc
 
