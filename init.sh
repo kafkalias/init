@@ -58,7 +58,7 @@ echo "[AK] Installing zsh plugins"
     fi
 
 echo "[AK] Create 'dev' folders"
-    if [ ! -d $DEV ]; 
+    if [ ! -d ~/dev ]; 
         then
             mkdir -p ~/dev;
         else
