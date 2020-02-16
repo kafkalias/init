@@ -72,7 +72,26 @@ sudo apt -y install snap
 echo "[AK] Installing slack"
 sudo snap install slack --classic
 
+echo "[AK] Installing vscode"
+sudo snap install code --classic
 
+echo "[AK] Installing spotify"
+sudo snap install spotify
+
+
+
+while true; do
+    read -p "Do you wish to install JAVA? " yn
+    case $yn in
+        [Yy]* ) sudo apt -y install default-jdk
+                update-alternatives --config java
+
+                ;;
+        [Nn]* ) echo "Not installing SBT.." 
+                exit;;
+        * ) echo "Please answer [Yy] or [Nn].";;
+    esac
+done
 
 while true; do
     read -p "Do you wish to install SBT? " yn
