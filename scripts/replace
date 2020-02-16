@@ -1,0 +1,13 @@
+#!/bin/bash
+
+search=$1
+replace=$2
+for file in `find -name '*'`; do
+  grep "$search" $file &> /dev/null
+  if [ $? -ne 0 ]; then
+    echo "Search string not found in $file!"
+  else
+    sed -i "s/$search/$replace/" $file
+    echo "Replace done in $file"
+  fi  
+done

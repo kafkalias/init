@@ -1,0 +1,89 @@
+#!/bin/bash
+cd
+
+echo "[AK] Starting system initialization.."
+
+echo "******************************************"
+echo "***      REMINDER: UPDATE SUDOERS      ***"
+echo "******************************************"
+
+
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y install wget git
+
+
+echo "[AK] Create and fill 'scripts' folder"
+    rm -rf ~/scripts
+    mkdir ~/scripts
+    cp -r init/scripts/* ~/scripts
+    chmod +x ~/scripts/*
+
+
+
+echo "[AK] Setting up ZSH"
+
+sudo apt -y install zsh
+sudo apt -y install powerline fonts-powerline
+
+sudo chsh -s $(which zsh)
+
+# sudo apt -y install zsh-theme-powerlevel9k
+rm -rf ~/.oh-my-zsh ~/.zsh*
+
+cp -R init/oh-my-zsh ~/.oh-my-zsh
+cp init/zshrc ~/.zshrc
+source ~/.zshrc
+
+echo "[AK] Installing zsh plugins"
+ if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]; 
+        then
+            git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+        else
+            echo "'zsh-syntax-highlighting' exists"
+    fi
+
+ if [ ! -d ~/.oh-my-zsh/custom/themes/powerlevel9k ]; 
+        then
+            git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+        else
+            echo "'powerlevel9k' exists"
+    fi
+
+ if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]; 
+        then
+            git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+        else
+            echo "'zsh-autosuggestions' exists"
+    fi
+
+echo "[AK] Create 'dev' folders"
+    if [ ! -d $DEV ]; 
+        then
+            mkdir -p ~/dev;
+        else
+            echo "'dev' folder exists"
+    fi
+
+
+echo "[AK] Installing snap"
+sudo apt -y install snap
+
+echo "[AK] Installing slack"
+sudo snap install slack --classic
+
+
+
+while true; do
+    read -p "Do you wish to install SBT? " yn
+    case $yn in
+        [Yy]* ) echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+                sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+                sudo apt -y update
+                sudo apt -y install sbt;;
+        [Nn]* ) echo "Not installing SBT.." 
+                exit;;
+        * ) echo "Please answer [Yy] or [Nn].";;
+    esac
+done
+

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ $1 == "apache" ]
+then
+   sudo /sbin/service httpd restart
+elif [ $1 == "cust" ]
+then
+   sudo /sbin/service httpd_cust restart
+elif [ $1 == "bill" ]
+then
+   sudo /sbin/service httpd_bill restart
+else
+   echo "Wrong argument"
+fi
