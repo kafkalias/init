@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin
-
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/snap/bin
 
 export DJANGO_COLORS="dark;error=yellow/blue,blink;notice=magenta"
 
@@ -19,16 +18,8 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:~/.local/bin
 
-# GOLANG env Variables
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/git/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-
 # JVM Options
 export SBT_OPTS="-Xms512M -Xmx4g -Xss1M -XX:MaxMetaspaceSize=4g"
-
-# AWS ENV VARS
-export PATH="~/.ebcli-virtual-env/executables:$PATH"
 
 #Apache Kafka
 export KAFKA_HOME=/usr/local/kafka
@@ -52,6 +43,7 @@ POWERLINE_GIT_DELETED="%F{red}✖%F{black}"
 POWERLINE_GIT_UNTRACKED="%F{yellow}✭%F{black}"
 POWERLINE_GIT_RENAMED="➜"
 POWERLINE_GIT_UNMERGED="═"
+POWERLEVEL9K_PROMPT_ON_NEWLINE="true"
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -131,19 +123,16 @@ alias .3='cd ../../../'                       # Go back 3 directory levels
 alias .4='cd ../../../../'                    # Go back 4 directory levels
 alias .5='cd ../../../../../'                 # Go back 5 directory levels
 alias .6='cd ../../../../../../'              # Go back 6 directory levels
-alias c='clear'							                  # clears console
-alias edit='code'							                # edit: Opens any file in vs code editor
+alias c='clear'							      # clears console
+alias edit='code'							  # edit: Opens any file in vs code editor
 alias getip='ipconfig getifaddr en0'          # gets machine IP
 alias dstop='docker stop $(docker ps -a -q)'  # stops all docker containers
 alias drm='docker rm $(docker ps -a -q)'      # removes all docker containers
 alias drmi='docker rmi -f $(docker images -a -q)' # removes all docker images
 alias editconf="code ~/.zshrc"                # edits .zshrc using vs code
-alias importconf="source ~/.zshrc"            # imports .zshrc
+alias srcconf="source ~/.zshrc"            # imports .zshrc
 alias es='elasticsearch'                      # starts elasticsearch server
 alias update='sudo apt update && sudo apt upgrade' # update packages
-alias openFinder='nautilus .'                 # opens current directory to file manager
-# Kubernetes
-alias kubenodes='kubectl get nodes'
 
 # Reboot / halt / poweroff
 alias reboot='sudo /sbin/reboot'
@@ -157,8 +146,7 @@ alias search='~/scripts/search'
 alias epoch='echo $(date +%s)'
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-
-
+W
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 NODE_MODULES=$HOME/.npm                                          
