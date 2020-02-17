@@ -1,5 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/snap/bin
 
 export DJANGO_COLORS="dark;error=yellow/blue,blink;notice=magenta"
 
@@ -145,14 +143,5 @@ alias search='~/scripts/search'
 
 alias epoch='echo $(date +%s)'
 
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-W
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-NODE_MODULES=$HOME/.npm                                          
-NPM_PACKAGES=$HOME/.npm-packages/bin                           
-export PATH=$PATH:$HOME/bin:$NODE_MODULES:$NPM_PACKAGES
-
-# Node Enviroment Variables
-export NODE_ENV=development
-export BABEL_ENV=$NODE_ENV
+# If you come from bash you might have to change your $PATH.
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/snap/bin
