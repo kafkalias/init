@@ -76,6 +76,23 @@ sudo snap install code --classic
 echo "[AK] Installing spotify"
 sudo snap install spotify
 
+while true; do
+    read -p "Do you wish to install Docker? " yn
+    case $yn in
+        [Yy]* ) sudo apt update
+                sudo apt remove docker docker-engine docker.io
+                sudo apt install docker.io
+                sudo systemctl start docker
+                sudo systemctl enable docker
+                sudo groupadd docker
+                sudo usermod -aG docker $USER
+                newgrp docker 
+                ;;
+        [Nn]* ) echo "Not installing Docker.." 
+                exit;;
+        * ) echo "Please answer [Yy] or [Nn].";;
+    esac
+done
 
 
 while true; do
@@ -85,7 +102,7 @@ while true; do
                 update-alternatives --config java
 
                 ;;
-        [Nn]* ) echo "Not installing SBT.." 
+        [Nn]* ) echo "Not installing JAVA.." 
                 exit;;
         * ) echo "Please answer [Yy] or [Nn].";;
     esac
@@ -103,4 +120,5 @@ while true; do
         * ) echo "Please answer [Yy] or [Nn].";;
     esac
 done
+
 
