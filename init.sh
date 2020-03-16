@@ -10,7 +10,8 @@ echo "******************************************"
 
 sudo apt -y update
 sudo apt -y upgrade
-sudo apt -y install wget git
+
+sudo apt -y install wget git curl
 
 
 echo "[AK] Create and fill 'scripts' folder"
@@ -28,8 +29,7 @@ sudo chsh -s $(which zsh)
 
 # sudo apt -y install zsh-theme-powerlevel9k
 
-cp init/zshrc ~/.zshrc
-source ~/.zshrc
+
 
 echo "[AK] Installing zsh plugins"
  if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]; 
@@ -94,3 +94,6 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89
 sudo apt -y update
 sudo apt -y install sbt
 
+rm ~/.zshrc
+cp init/zshrc ~/.zshrc
+source ~/.zshrc
