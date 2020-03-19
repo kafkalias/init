@@ -95,5 +95,5 @@ sudo apt -y update
 sudo apt -y install sbt
 
 rm ~/.zshrc
-cp init/zshrc ~/.zshrc
+cp init/.zshrc ~/.zshrc
 source ~/.zshrc
