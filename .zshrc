@@ -2,6 +2,7 @@
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin
 
 export DEV=$HOME/dev
+export SCRIPTS=$HOME/scripts
 export DJANGO_COLORS="dark;error=yellow/blue,blink;notice=magenta"
 
 export ZSH_DISABLE_COMPFIX="true"
@@ -12,12 +13,7 @@ export ZSH=~/.oh-my-zsh
 # Local Development environment for play
 export ENVIRONMENT=local
 export elastic=my_own_password
-# Android env params
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:~/.local/bin
+
 
 # GOLANG env Variables
 export GOROOT=/usr/local/go
@@ -107,7 +103,13 @@ export LANG=en_GB.UTF-8
 #instead of overwriting it.
 setopt APPEND_HISTORY
 
+# Make grep command more user friendly
 grep='grep --color=auto'
+
+# Make some possibly destructive commands more interactive.
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
 
 # Easier ls shortcuts
 alias ll='ls -lL --color=auto'
@@ -127,18 +129,20 @@ alias kill='kill -9'
 alias cd..='cd ../'                           # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                             # Go back 1 directory level
 alias ...='cd ../../'                         # Go back 2 directory levels
-alias .3='cd ../../../'                       # Go back 3 directory levels
-alias .4='cd ../../../../'                    # Go back 4 directory levels
-alias .5='cd ../../../../../'                 # Go back 5 directory levels
-alias .6='cd ../../../../../../'              # Go back 6 directory levels
+alias ....='cd ../../../'                     # Go back 3 directory levels
+alias .....='cd ../../../../'                 # Go back 4 directory levels
+alias ......='cd ../../../../../'             # Go back 5 directory levels
+alias .......='cd ../../../../../../'         # Go back 6 directory levels
+
 alias c='clear'							      # clears console
 alias edit='code'							  # edit: Opens any file in vs code editor
-alias getip='ipconfig getifaddr en0'          # gets machine IP
+
+# Docker commands
 alias dstop='docker stop $(docker ps -a -q)'  # stops all docker containers
 alias drm='docker rm $(docker ps -a -q)'      # removes all docker containers
-alias dstart='~/scripts/docker-start'
 alias drmi='docker rmi -f $(docker images -a -q)' # removes all docker images
-alias editconf="code ~/.zshrc"                # edits .zshrc using vs code
+
+alias editconf="edit ~/.zshrc"                # edits .zshrc using vs code
 alias srcconf="source ~/.zshrc"               # imports .zshrc
 alias es='elasticsearch'                      # starts elasticsearch server
 alias update='sudo apt update && sudo apt upgrade' # update packages
@@ -153,12 +157,15 @@ alias halt='sudo /sbin/halt'
 alias shutdown='sudo /sbin/shutdown'
 alias s=search
 
-alias search='~/scripts/search'
+alias search='$SCRIPTS/search'
+alias searchf='$SCRIPTS/searchf'
+alias replace='$SCRIPTS/replace'
+alias dstart='$SCRIPTS/docker-start'
 
 alias epoch='echo $(date +%s)'
+alias epochm='echo $(date +%s)000'
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -166,9 +173,6 @@ NODE_MODULES=$HOME/.npm
 NPM_PACKAGES=$HOME/.npm-packages/bin                           
 export PATH=$PATH:$HOME/bin:$NODE_MODULES:$NPM_PACKAGES
 
-# Node Enviroment Variables
-export NODE_ENV=development
-export BABEL_ENV=$NODE_ENV
 
 emulate sh -c 'source /etc/profile'
 
