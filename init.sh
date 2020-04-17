@@ -8,10 +8,10 @@ echo "***      REMINDER: UPDATE SUDOERS      ***"
 echo "******************************************"
 
 
-sudo apt -y update
-sudo apt -y upgrade
+sudo apt update -y 
+sudo apt upgrade -y 
 
-sudo apt -y install wget git curl
+sudo apt install wget git curl  -y 
 
 
 echo "[AK] Create and fill 'scripts' folder"
@@ -22,12 +22,12 @@ echo "[AK] Create and fill 'scripts' folder"
 
 echo "[AK] Setting up ZSH"
 
-sudo apt -y install zsh
-sudo apt -y install powerline fonts-powerline
+sudo apt install zsh -y  
+sudo apt install powerline fonts-powerline -y 
 git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 sudo chsh -s $(which zsh)
 
-# sudo apt -y install zsh-theme-powerlevel9k
+# sudo apt install zsh-theme-powerlevel9k
 
 
 
@@ -63,7 +63,7 @@ echo "[AK] Create 'dev' folders"
 
 
 echo "[AK] Installing snap"
-sudo apt -y install snap
+sudo apt install snap
 
 echo "[AK] Installing slack"
 sudo snap install slack --classic
@@ -75,9 +75,9 @@ echo "[AK] Installing spotify"
 sudo snap install spotify
 
 echo "[AK] Installing Docker"
-sudo apt update
-sudo apt remove docker docker-engine docker.io
-sudo apt install docker.io
+sudo apt update  -y 
+sudo apt remove docker docker-engine docker.io -y 
+sudo apt install docker.io -y 
 sudo systemctl start docker
 sudo systemctl enable docker
 sudo groupadd docker
@@ -85,14 +85,14 @@ sudo usermod -aG docker $USER
 newgrp docker 
 
 echo "[AK] Installing Java"
-sudo apt -y install default-jdk
+sudo apt install default-jdk -y 
 update-alternatives --config java
 
 echo "[AK] Installing SBT"
 echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
-sudo apt -y update
-sudo apt -y install sbt
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823 -y 
+sudo apt update -y 
+sudo apt install sbt -y 
 
 rm ~/.zshrc
 cp init/.zshrc ~/.zshrc
