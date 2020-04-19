@@ -1,35 +1,13 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin
-
-export DEV=$HOME/dev
-export SCRIPTS=$HOME/scripts
-export DJANGO_COLORS="dark;error=yellow/blue,blink;notice=magenta"
-
-export ZSH_DISABLE_COMPFIX="true"
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
-# Local Development environment for play
-export ENVIRONMENT=local
-export elastic=my_own_password
-
-
-# GOLANG env Variables
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/git/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-
-# JVM Options
-export SBT_OPTS="-Xms512M -Xmx4g -Xss1M -XX:MaxMetaspaceSize=4g"
-
-# AWS ENV VARS
-export PATH="~/.ebcli-virtual-env/executables:$PATH"
-
-#Apache Kafka
-export KAFKA_HOME=/usr/local/kafka
-export PATH=$PATH:$KAFKA_HOME/bin
-
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -51,136 +29,93 @@ POWERLINE_GIT_UNMERGED="═"
 POWERLEVEL9K_PROMPT_ON_NEWLINE="true"
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# Hide machine name from theme
-DEFAULT_USER="$USER"
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-# Preserve history in session
-unsetopt inc_append_history
-unsetopt share_history
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-# Colour output on Mac OS
-export CLICOLOR=1
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=1
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="yyyy.mm.dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to w~/.oh-my-zsh/custom/plugins/
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(docker docker-compose git history node npm sudo aws sbt vscode zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(docker history zsh-syntax-highlighting zsh-autosuggestions)
 
-# imports everithing from oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# make alt + arrow-keys work with intellij's terminal
-bindkey "\e\eOD" backward-word 
-bindkey "\e\eOC" forward-word
+# User configuration
 
-# Expand the history size
-HISTFILESIZE=100000 
-HISTSIZE=999999
+# export MANPATH="/usr/local/man:$MANPATH"
 
-# Default locale
-export LANG=en_GB.UTF-8
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-#Append commands to the bash command history file (~/.bash_history)
-#instead of overwriting it.
-setopt APPEND_HISTORY
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-# Make grep command more user friendly
-grep='grep --color=auto'
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
-# Make some possibly destructive commands more interactive.
-alias rm='rm -i'
-alias mv='mv -i'
-alias cp='cp -i'
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Easier ls shortcuts
-alias ll='ls -lL --color=auto'
-alias la='ls -a --color=auto'
-alias ls='ls --color=auto'
-
-# Directory
-alias mkdir='mkdir -pv'
-alias rmdir='rmdir -pv'
-alias path='echo -e ${PATH//:/\\n}'
-
-# Processes
-alias psaux='ps aux | grep'
-alias kill='kill -9'
-
-# general aliases
-alias cd..='cd ../'                           # Go back 1 directory level (for fast typers)
-alias ..='cd ../'                             # Go back 1 directory level
-alias ...='cd ../../'                         # Go back 2 directory levels
-alias ....='cd ../../../'                     # Go back 3 directory levels
-alias .....='cd ../../../../'                 # Go back 4 directory levels
-alias ......='cd ../../../../../'             # Go back 5 directory levels
-alias .......='cd ../../../../../../'         # Go back 6 directory levels
-
-alias c='clear'							      # clears console
-alias edit='code'							  # edit: Opens any file in vs code editor
-
-# Docker commands
-alias dstop='docker stop $(docker ps -a -q)'  # stops all docker containers
-alias drm='docker rm $(docker ps -a -q)'      # removes all docker containers
-alias drmi='docker rmi -f $(docker images -a -q)' # removes all docker images
-
-alias editconf="edit ~/.zshrc"                # edits .zshrc using vs code
-alias srcconf="source ~/.zshrc"               # imports .zshrc
-alias es='elasticsearch'                      # starts elasticsearch server
-alias update='sudo apt update && sudo apt upgrade' # update packages
-alias openFinder='nautilus .'                 # opens current directory to file manager
-# Kubernetes
-alias kubenodes='kubectl get nodes'
-
-# Reboot / halt / poweroff
-alias reboot='sudo /sbin/reboot'
-alias poweroff='sudo /sbin/poweroff'
-alias halt='sudo /sbin/halt'
-alias shutdown='sudo /sbin/shutdown'
-alias s=search
-
-alias search='$SCRIPTS/search'
-alias searchf='$SCRIPTS/searchf'
-alias replace='$SCRIPTS/replace'
-alias dstart='$SCRIPTS/docker-start'
-
-alias epoch='echo $(date +%s)'
-alias epochm='echo $(date +%s)000'
-
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-NODE_MODULES=$HOME/.npm                                          
-NPM_PACKAGES=$HOME/.npm-packages/bin                           
-export PATH=$PATH:$HOME/bin:$NODE_MODULES:$NPM_PACKAGES
-
-
-emulate sh -c 'source /etc/profile'
-
-#MARLOW
-alias mssh='ssh -i ~/.ssh/marlow_test.pem ec2-user@34.244.211.208'
-alias nb='cd $DEV/naboo-be'
-alias ra='nb; sbt runAll'
-
-
-
+[[ -e ~/.profile ]] && emulate sh -c 'source ~/.bashrc'
 
