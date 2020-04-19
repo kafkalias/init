@@ -61,6 +61,9 @@ echo "[AK] Create 'dev' folders"
             echo "'dev' folder exists"
     fi
 
+echo "[AK] Installing flameshot"
+sudo apt install flameshot -y
+
 
 echo "[AK] Installing snap"
 sudo apt install snap
