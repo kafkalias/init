@@ -20,13 +20,15 @@ echo "[AK] Create and fill 'scripts' folder"
     cp -r init/scripts/* ~/scripts
     chmod +x ~/scripts/*
 
-# echo "[AK] Setting up ZSH"
+echo "[AK] Setting up ZSH"
 
-# sudo apt-get install git-core zsh -y
-# sudo apt install powerline fonts-powerline -y 
-# git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-# sudo chsh -s $(which zsh)
-# wget --no-check-certificate http://install.ohmyz.sh -O - | sh
+sudo apt install git-core zsh -y  
+sudo apt install powerline fonts-powerline -y 
+sudo chsh -s $(which zsh)
+wget --no-check-certificate http://install.ohmyz.sh -O - | sh
+
+# sudo apt install zsh-theme-powerlevel9k
+
 
 
 echo "[AK] Installing zsh plugins"
@@ -60,38 +62,44 @@ echo "[AK] Create 'dev' folders"
     fi
 
 
-# echo "[AK] Installing snap"
-# sudo apt install snap
+echo "[AK] Installing snap"
+sudo apt install snap
 
-# echo "[AK] Installing slack"
-# sudo snap install slack --classic
+echo "[AK] Installing snapd"
+sudo apt install snapd
 
-# echo "[AK] Installing vscode"
-# sudo snap install code --classic
+echo "[AK] Installing slack"
+sudo snap install slack --classic
 
-# echo "[AK] Installing spotify"
-# sudo snap install spotify
+echo "[AK] Installing vscode"
+sudo snap install code --classic
 
-# echo "[AK] Installing Docker"
-# sudo apt update  -y 
-# sudo apt remove docker docker-engine docker.io -y 
-# sudo apt install docker.io -y 
-# sudo systemctl start docker
-# sudo systemctl enable docker
-# sudo groupadd docker
-# sudo usermod -aG docker $USER
-# newgrp docker 
+echo "[AK] Installing spotify"
+sudo snap install spotify
 
-# echo "[AK] Installing Java"
-# sudo apt install default-jdk -y 
-# update-alternatives --config java
+rm ~/.zshrc
+cp init/zshrc ~/.zshrc
+source ~/.zshrc
 
-# echo "[AK] Installing SBT"
-# echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
-# sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823 -y 
-# sudo apt update -y 
-# sudo apt install sbt -y 
+echo "[AK] Installing Java"
+sudo apt install default-jdk -y 
+update-alternatives --config java
 
-# rm ~/.zshrc
-# cp init/zshrc ~/.zshrc
-# source ~/.zshrc
+echo "[AK] Installing SBT"
+echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823  
+sudo apt update -y 
+sudo apt install sbt -y 
+
+echo "[AK] Installing Docker"
+sudo apt update  -y 
+sudo apt remove docker docker-engine docker.io -y 
+sudo apt install docker.io -y 
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker 
+
+
+
