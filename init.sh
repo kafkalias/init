@@ -109,6 +109,12 @@ mkdir ~/.npm-global
 npm config set prefix '~/.npm-global'
 npm install npm@latest -g  
 
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update && sudo apt install yarn
+
+
+
 sudo apt autoremove -y
 
 rm ~/.zshrc
