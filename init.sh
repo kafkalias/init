@@ -80,9 +80,7 @@ sudo snap install code --classic
 echo "[AK] Installing spotify"
 sudo snap install spotify
 
-rm ~/.zshrc
-cp init/zshrc ~/.zshrc
-source ~/.zshrc
+
 
 echo "[AK] Installing Java"
 sudo apt install default-jdk -y 
@@ -104,5 +102,15 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker 
 
+echo "[AK] Installing npm"
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt install nodejs -y
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+npm install npm@latest -g  
+
 sudo apt autoremove -y
 
+rm ~/.zshrc
+cp init/zshrc ~/.zshrc
+source ~/.zshrc
