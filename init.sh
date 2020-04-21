@@ -102,17 +102,20 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker 
 
-echo "[AK] Installing npm"
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt install nodejs -y
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-npm install npm@latest -g  
+echo "[AK] Installing maven"
+sudo apt install maven
 
+
+echo "[AK] Installing npm and yarn"
+curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+sudo apt install nodejs -y 
+sudo apt install gcc g++ make -y
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt update && sudo apt install yarn
 
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
 
 
 sudo apt autoremove -y

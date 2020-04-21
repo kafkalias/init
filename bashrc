@@ -91,10 +91,6 @@ fi
 export DEV=$HOME/dev
 export SCRIPTS=$HOME/scripts
 
-# Local Development environment for play
-export ENVIRONMENT=local
-export elastic=my_own_password
-
 # JVM Options
 export SBT_OPTS="-Xms512M -Xmx4g -Xss1M -XX:MaxMetaspaceSize=4g"
 
@@ -136,9 +132,12 @@ alias edit='code'							  # edit: Opens any file in vs code editor
 alias dstop='docker stop $(docker ps -a -q)'  # stops all docker containers
 alias drm='docker rm $(docker ps -a -q)'      # removes all docker containers
 alias drmi='docker rmi -f $(docker images -a -q)' # removes all docker images
+alias dps='docker ps -a'
 
-alias editconf="edit ~/.zshrc"                # edits .zshrc using vs code
-alias srcconf="source ~/.zshrc"               # imports .zshrc
+alias editzsh="edit ~/.zshrc"                # edits .zshrc using vs code
+alias editbash="edit ~/.bashrc"
+alias srcbash="source ~/.bashrc"
+alias srczsh="source ~/.zshrc"               # imports .zshrc
 alias es='elasticsearch'                      # starts elasticsearch server
 alias update='sudo apt update && sudo apt upgrade' # update packages
 
@@ -167,13 +166,22 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 NODE_MODULES=$HOME/.npm                                          
 NPM_PACKAGES=$HOME/.npm-packages/bin                           
 export PATH=$PATH:$HOME/bin:$NODE_MODULES:$NPM_PACKAGES
+export PATH=~/.npm-global/bin:$PATH
 
 emulate sh -c 'source /etc/profile'
 
 #MARLOW
+export NABOO=$DEV/naboo-be
+export NABOO_LOGS=$NABOO/output.log
 alias mssh='ssh -i ~/.ssh/marlow_test.pem ec2-user@34.244.211.208'
-alias nb='cd $DEV/naboo-be'
-alias ra='nb; sbt runAll'
-
+alias nb='cd $NABOO'
+alias ra='nb; sbt runAll >> $NABOO_LOGS 2>&1'
+alias logs='nb; less +F $NABOO_LOGS'
 source ~/.profile
 
+# Local Development environment for play
+export ENVIRONMENT=local
+export ELASTIC_USER=elastic
+export ELASTIC_PASSWORD=my_own_password
+export ELASTIC_HOSTNAME=localhost
+export ELASTIC_PORT=9200
