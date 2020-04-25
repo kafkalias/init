@@ -125,6 +125,8 @@ alias .....='cd ../../../../'                 # Go back 4 directory levels
 alias ......='cd ../../../../../'             # Go back 5 directory levels
 alias .......='cd ../../../../../../'         # Go back 6 directory levels
 
+alias dev='cd $DEV'
+
 alias c='clear'							      # clears console
 alias edit='code'							  # edit: Opens any file in vs code editor
 
@@ -159,16 +161,11 @@ alias dstart='$SCRIPTS/docker-start'
 alias epoch='echo $(date +%s)'
 alias epochm='echo $(date +%s)000'
 
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 NODE_MODULES=$HOME/.npm                                          
 NPM_PACKAGES=$HOME/.npm-packages/bin                           
 export PATH=$PATH:$HOME/bin:$NODE_MODULES:$NPM_PACKAGES
 export PATH=~/.npm-global/bin:$PATH
 
-emulate sh -c 'source /etc/profile'
 
 #MARLOW
 export NABOO=$DEV/naboo-be
@@ -177,7 +174,6 @@ alias mssh='ssh -i ~/.ssh/marlow_test.pem ec2-user@34.244.211.208'
 alias nb='cd $NABOO'
 alias ra='nb; sbt runAll >> $NABOO_LOGS 2>&1'
 alias logs='nb; less +F $NABOO_LOGS'
-source ~/.profile
 
 # Local Development environment for play
 export ENVIRONMENT=local

@@ -118,4 +118,3 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.bashrc'
-

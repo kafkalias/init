@@ -13,6 +13,13 @@ sudo apt upgrade -y
 
 sudo apt install wget git curl  -y 
 
+echo "[AK] Create 'dev' folders"
+    if [ ! -d ~/dev ]; 
+        then
+            mkdir -p ~/dev;
+        else
+            echo "'dev' folder exists"
+    fi
 
 echo "[AK] Create and fill 'scripts' folder"
     rm -rf ~/scripts
@@ -22,44 +29,23 @@ echo "[AK] Create and fill 'scripts' folder"
 
 echo "[AK] Setting up ZSH"
 
-sudo apt install git-core zsh -y  
+rm -rf ~/.oh-my-zsh
+
+sudo apt install zsh -y  
 sudo apt install powerline fonts-powerline -y 
-sudo chsh -s $(which zsh)
-wget --no-check-certificate http://install.ohmyz.sh -O - | sh
-
-# sudo apt install zsh-theme-powerlevel9k
-
-
+sudo chsh -s /bin/zsh root
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
 
 echo "[AK] Installing zsh plugins"
- if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]; 
-        then
-            git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-        else
-            echo "'zsh-syntax-highlighting' exists"
-    fi
 
- if [ ! -d ~/.oh-my-zsh/custom/themes/powerlevel9k ]; 
-        then
-            git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-        else
-            echo "'powerlevel9k' exists"
-    fi
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/themes/powerlevel9k
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions
 
- if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]; 
-        then
-            git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-        else
-            echo "'zsh-autosuggestions' exists"
-    fi
+rm $HOME/.zshrc
+cp init/zshrc $HOME/.zshrc
+sleep 5
 
-echo "[AK] Create 'dev' folders"
-    if [ ! -d ~/dev ]; 
-        then
-            mkdir -p ~/dev;
-        else
-            echo "'dev' folder exists"
-    fi
 
 echo "[AK] Installing flameshot"
 sudo apt install flameshot -y
@@ -107,7 +93,7 @@ sudo apt install maven
 
 
 echo "[AK] Installing npm and yarn"
-curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 sudo apt install nodejs -y 
 sudo apt install gcc g++ make -y
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -117,9 +103,6 @@ sudo apt update && sudo apt install yarn
 mkdir ~/.npm-global
 npm config set prefix '~/.npm-global'
 
-
+source $HOME/.zshrc
 sudo apt autoremove -y
 
-rm ~/.zshrc
-cp init/zshrc ~/.zshrc
-source ~/.zshrc
