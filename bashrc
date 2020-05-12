@@ -92,7 +92,7 @@ export DEV=$HOME/dev
 export SCRIPTS=$HOME/scripts
 
 # JVM Options
-export SBT_OPTS="-Xms512M -Xmx4g -Xss1M -XX:MaxMetaspaceSize=4g"
+# export SBT_OPTS="-Xms512M -Xmx4g -Xss1M -XX:MaxMetaspaceSize=4g"
 
 # Hide machine name from theme
 DEFAULT_USER="$USER"
@@ -166,8 +166,9 @@ NPM_PACKAGES=$HOME/.npm-packages/bin
 export PATH=$PATH:$HOME/bin:$NODE_MODULES:$NPM_PACKAGES
 export PATH=~/.npm-global/bin:$PATH
 
-
-#MARLOW
+##############
+### MARLOW ###
+##############
 export NABOO=$DEV/naboo-be
 export NABOO_LOGS=$NABOO/output.log
 alias mssh='ssh -i ~/.ssh/marlow_test.pem ec2-user@34.244.211.208'
