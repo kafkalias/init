@@ -128,13 +128,15 @@ alias .......='cd ../../../../../../'         # Go back 6 directory levels
 alias dev='cd $DEV'
 
 alias c='clear'							      # clears console
-alias edit='code'							  # edit: Opens any file in vs code editor
+alias edit='subl'							  # edit: Opens any file in sublime
 
 # Docker commands
 alias dstop='docker stop $(docker ps -a -q)'  # stops all docker containers
 alias drm='docker rm $(docker ps -a -q)'      # removes all docker containers
 alias drmi='docker rmi -f $(docker images -a -q)' # removes all docker images
 alias dps='docker ps -a'
+alias dup='docker-compose up -d'
+alias ddown='docker-compose down'
 
 alias editzsh="edit ~/.zshrc"                # edits .zshrc using vs code
 alias editbash="edit ~/.bashrc"
@@ -161,24 +163,51 @@ alias dstart='$SCRIPTS/docker-start'
 alias epoch='echo $(date +%s)'
 alias epochm='echo $(date +%s)000'
 
+alias listen='sudo lsof -i -P -n | grep LISTEN'
+
+alias ct='find . -type d -name "target" -prune -exec rm -rf {} \;'
+
+alias hydra='flatpak run org.gabmus.hydrapaper'
+
 NODE_MODULES=$HOME/.npm                                          
 NPM_PACKAGES=$HOME/.npm-packages/bin                           
 export PATH=$PATH:$HOME/bin:$NODE_MODULES:$NPM_PACKAGES
 export PATH=~/.npm-global/bin:$PATH
+export PATH=$DEV/kafka/bin:$PATH
 
 ##############
 ### MARLOW ###
 ##############
-export NABOO=$DEV/naboo-be
-export NABOO_LOGS=$NABOO/output.log
-alias mssh='ssh -i ~/.ssh/marlow_test.pem ec2-user@34.244.211.208'
-alias nb='cd $NABOO'
-alias ra='nb; sbt runAll >> $NABOO_LOGS 2>&1'
-alias logs='nb; less +F $NABOO_LOGS'
+export OCEANUS=$DEV/oceanus 
+export POSEIDON=$DEV/poseidon
+alias ocn='cd $OCEANUS'
+alias psd='cd $POSEIDON'
 
 # Local Development environment for play
-export ENVIRONMENT=local
+
 export ELASTIC_USER=elastic
 export ELASTIC_PASSWORD=my_own_password
 export ELASTIC_HOSTNAME=localhost
 export ELASTIC_PORT=9200
+
+export ENVIRONMENT=dev
+
+export KAFKA_SECURITY_PROTOCOL=SSL
+export KAFKA_SSL_TRUSTSTORE_LOCATION=~/dev/hermes/user-truststore.jks
+export KAFKA_SSL_TRUSTSTORE_PASSWORD=BuGyxzQ2Dc1Z
+export KAFKA_SSL_KEYSTORE_LOCATION=~/dev/hermes/user-keystore.jks
+export KAFKA_SSL_KEYSTORE_PASSWORD=BuGyxzQ2Dc1Z
+export SSL_KEY_PASSWORD=BuGyxzQ2Dc1Z
+
+if [ "$ENVIRONMENT" = 'prod' ]; then
+    export KAFKA_BOOTSTRAP_SERVERS=https://kafka-dev-kafka-bootstrap-hermes.apps.marlow.naboocore.com:443
+else
+    export KAFKA_BOOTSTRAP_SERVERS=http://localhost:9092
+fi
+
+
+export SEEDER_BOOTSTRAP_KEY="kakomazalos"
+
+export NEXUS_REPO=nexus3-nexus.apps.marlow.naboocore.com
+export NEXUS_USER=a.kafkalias
+export NEXUS_PASS='yXJBBw3$cVXYn#R8'
